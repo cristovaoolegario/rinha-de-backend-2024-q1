@@ -11,5 +11,5 @@ func main() {
 	app.Post("/clientes/{id}/transacoes", http.TransactionHandler)
 	app.Get("/clientes/{id}/extrato", http.BalanceHandler)
 
-	app.Listen(":3000")
+	app.Listen(":8080")
 }
