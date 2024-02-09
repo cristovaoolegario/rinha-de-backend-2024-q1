@@ -1,22 +1,15 @@
 package main
 
 import (
+	"github.com/cristovaoolegario/rinha-de-backend-2024-q1/internal/infra/http"
 	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
 	app := fiber.New()
 
-	app.Post("/clientes/{id}/transacoes", TransactionHandler)
-	app.Get("/clientes/{id}/extrato", BalanceHandler)
+	app.Post("/clientes/{id}/transacoes", http.TransactionHandler)
+	app.Get("/clientes/{id}/extrato", http.BalanceHandler)
 
 	app.Listen(":3000")
-}
-
-func TransactionHandler(ctx *fiber.Ctx) error {
-	return ctx.SendString("Transaction Handler!")
-}
-
-func BalanceHandler(ctx *fiber.Ctx) error {
-	return ctx.SendString("Balance Handler!")
 }
