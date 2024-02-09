@@ -6,6 +6,11 @@ import (
 )
 
 func TransactionHandler(ctx *fiber.Ctx) error {
+	_, err := ctx.ParamsInt("id")
+	if err != nil {
+		return ctx.SendStatus(422)
+	}
+
 	var t TransactionInput
 	if err := ctx.BodyParser(&t); err != nil {
 		return ctx.Status(fiber.StatusBadRequest).SendString(err.Error())
@@ -25,6 +30,6 @@ func TransactionHandler(ctx *fiber.Ctx) error {
 	return ctx.Send(b)
 }
 
-func BalanceHandler(ctx *fiber.Ctx) error {
-	return ctx.SendString("Balance Handler!")
+func BalanceHandler(c *fiber.Ctx) error {
+	return c.SendString("Balance Handler!")
 }
